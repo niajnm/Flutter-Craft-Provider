@@ -5,20 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         
+        
 
         {
-            "name": "onefish-android",
+            "name": "Flutter-android",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "onefish-android (profile mode)",
+            "name": "Flutter-android (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "onefish-android (release mode)",
+            "name": "Flutter-android (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

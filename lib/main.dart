@@ -41,6 +41,6 @@ void main() async {
   // await ServiceLocator.setUpServiceLocator();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(
-      MultiProvider(providers: ProviderPath.providersList, child: BaseApp()));
+  runApp(MultiProvider(
+      providers: ProviderPath.providersList, child: const BaseApp()));
 }
