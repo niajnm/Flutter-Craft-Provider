@@ -17,22 +17,22 @@ import 'flavors/env_config.dart';
 import 'flavors/environment.dart';
 
 void main() async {
-  // EnvConfig devConfig = EnvConfig(
-  //   appName: "Flutter Prod",
-  //   baseUrl: "https://api.onefish.app/",
-  //   shouldCollectCrashLog: true,
-  // );
+  EnvConfig devConfig = EnvConfig(
+    appName: "Flutter Prod",
+    baseUrl: "https://api.onefish.app/",
+    shouldCollectCrashLog: true,
+  );
 
-  // BuildConfig.instantiate(
-  //   envType: Environment.DEVELOPMENT,
-  //   envConfig: devConfig,
-  // );
+  BuildConfig.instantiate(
+    envType: Environment.DEVELOPMENT,
+    envConfig: devConfig,
+  );
 
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // await dotenv.load(fileName: "conf/.env");
+  await dotenv.load(fileName: "conf/.env");
 
-  // await GetStorage.init(databaseName);
+  await GetStorage.init(databaseName);
 
   // Enable it after adding firebase connection to this project
   // await FirebaseService.enableFirebase(Environment.DEVELOPMENT);
