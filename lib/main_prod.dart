@@ -42,5 +42,5 @@ void main() async {
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-      MultiProvider(providers: ProviderPath.providersList, child: BaseApp()));
+      MultiProvider(providers: ProviderPath.providersList, child: const BaseApp()));
 }
