@@ -112,7 +112,7 @@ class AppThemeData {
     return language == AppLanguage.bn.name ? AppFonts.bangla : AppFonts.english;
   }
 
-  static ThemeData gettheme() => FlexThemeData.light(
+  static ThemeData lightThemeFlex(String appLanguage) => FlexThemeData.light(
         scheme: FlexScheme.barossa,
         surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
         blendLevel: 10,
@@ -194,7 +194,7 @@ class AppThemeData {
         // fontFamily: GoogleFonts.notoSans().fontFamily,
       );
 
-  static ThemeData darkTheme() => FlexThemeData.dark(
+  static ThemeData darkThemeFlex(String appLanguage) => FlexThemeData.dark(
         scheme: FlexScheme.barossa,
         surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
         blendLevel: 15,

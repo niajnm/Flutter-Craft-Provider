@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum AppLanguage {
   bn, // Bangla
   en, // English
@@ -15,3 +17,7 @@ extension AppLanguageTitle on AppLanguage {
     }
   }
 }
+
+    List<Locale> getSupportedLocal() {
+    return AppLanguage.values.map((language) => Locale(language.name)).toList();
+  }

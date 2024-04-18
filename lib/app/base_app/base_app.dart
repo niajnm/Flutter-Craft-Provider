@@ -1,156 +1,96 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_craft/app/module/home_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_craft/app/core/base/app_theme_data.dart';
+import 'package:flutter_craft/app/core/base/theme.dart';
+import 'package:flutter_craft/app/core/route/go_route_service.dart';
+import 'package:flutter_craft/app/core/values/app_language.dart';
+import 'package:flutter_craft/app/data/local/preference/preference_manager.dart';
+import 'package:flutter_craft/app/data/local/preference/preference_manager_impl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class BaseApp extends StatelessWidget {
+class BaseApp extends StatefulWidget {
   const BaseApp({super.key});
 
+  @override
+  State<BaseApp> createState() => _BaseAppState();
+}
+
+class _BaseAppState extends State<BaseApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      key: navigatorKey,
-      //  title: 'Flutter Demo',
-      localizationsDelegates: const [
-        AppLocalizations.delegate, // Add this line
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('es'), // Spanish
-      ],
-      theme: FlexThemeData.light(
-        scheme: FlexScheme.barossa,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 10,
-        appBarStyle: FlexAppBarStyle.background,
-        bottomAppBarElevation: 1.0,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 20,
-          blendTextTheme: true,
-          useTextTheme: true,
-          useM2StyleDividerInM3: true,
-          thickBorderWidth: 2.0,
-          elevatedButtonSchemeColor: SchemeColor.onPrimaryContainer,
-          elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
-          outlinedButtonOutlineSchemeColor: SchemeColor.primary,
-          toggleButtonsBorderSchemeColor: SchemeColor.primary,
-          segmentedButtonSchemeColor: SchemeColor.primary,
-          segmentedButtonBorderSchemeColor: SchemeColor.primary,
-          unselectedToggleIsColored: true,
-          sliderValueTinted: true,
-          inputDecoratorSchemeColor: SchemeColor.primary,
-          inputDecoratorBackgroundAlpha: 15,
-          inputDecoratorRadius: 10.0,
-          inputDecoratorPrefixIconSchemeColor: SchemeColor.primary,
-          chipRadius: 10.0,
-          popupMenuRadius: 6.0,
-          popupMenuElevation: 6.0,
-          alignedDropdown: true,
-          useInputDecoratorThemeInDialogs: true,
-          appBarScrolledUnderElevation: 8.0,
-          drawerWidth: 280.0,
-          drawerIndicatorSchemeColor: SchemeColor.primary,
-          bottomNavigationBarMutedUnselectedLabel: false,
-          bottomNavigationBarMutedUnselectedIcon: false,
-          menuRadius: 6.0,
-          menuElevation: 6.0,
-          menuBarRadius: 0.0,
-          menuBarElevation: 1.0,
-          navigationBarSelectedLabelSchemeColor: SchemeColor.primary,
-          navigationBarMutedUnselectedLabel: false,
-          navigationBarSelectedIconSchemeColor: SchemeColor.onPrimary,
-          navigationBarMutedUnselectedIcon: false,
-          navigationBarIndicatorSchemeColor: SchemeColor.primary,
-          navigationBarIndicatorOpacity: 1.00,
-          navigationBarElevation: 2.0,
-          navigationBarHeight: 70.0,
-          navigationRailSelectedLabelSchemeColor: SchemeColor.primary,
-          navigationRailMutedUnselectedLabel: false,
-          navigationRailSelectedIconSchemeColor: SchemeColor.onPrimary,
-          navigationRailMutedUnselectedIcon: false,
-          navigationRailIndicatorSchemeColor: SchemeColor.primary,
-          navigationRailIndicatorOpacity: 1.00,
-        ),
-        keyColors: const FlexKeyColors(
-          useTertiary: true,
-          keepPrimary: true,
-          keepTertiary: true,
-        ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
-        swapLegacyOnMaterial3: true,
-        // To use the Playground font, add GoogleFonts package and uncomment
-        // fontFamily: GoogleFonts.notoSans().fontFamily,
-      ),
-      darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.barossa,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 15,
-        appBarStyle: FlexAppBarStyle.background,
-        bottomAppBarElevation: 2.0,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 40,
-          blendTextTheme: true,
-          useTextTheme: true,
-          useM2StyleDividerInM3: true,
-          thickBorderWidth: 2.0,
-          elevatedButtonSchemeColor: SchemeColor.onPrimaryContainer,
-          elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
-          outlinedButtonOutlineSchemeColor: SchemeColor.primary,
-          toggleButtonsBorderSchemeColor: SchemeColor.primary,
-          segmentedButtonSchemeColor: SchemeColor.primary,
-          segmentedButtonBorderSchemeColor: SchemeColor.primary,
-          unselectedToggleIsColored: true,
-          sliderValueTinted: true,
-          inputDecoratorSchemeColor: SchemeColor.primary,
-          inputDecoratorBackgroundAlpha: 22,
-          inputDecoratorRadius: 10.0,
-          chipRadius: 10.0,
-          popupMenuRadius: 6.0,
-          popupMenuElevation: 6.0,
-          alignedDropdown: true,
-          useInputDecoratorThemeInDialogs: true,
-          drawerWidth: 280.0,
-          drawerIndicatorSchemeColor: SchemeColor.primary,
-          bottomNavigationBarMutedUnselectedLabel: false,
-          bottomNavigationBarMutedUnselectedIcon: false,
-          menuRadius: 6.0,
-          menuElevation: 6.0,
-          menuBarRadius: 0.0,
-          menuBarElevation: 1.0,
-          navigationBarSelectedLabelSchemeColor: SchemeColor.primary,
-          navigationBarMutedUnselectedLabel: false,
-          navigationBarSelectedIconSchemeColor: SchemeColor.onPrimary,
-          navigationBarMutedUnselectedIcon: false,
-          navigationBarIndicatorSchemeColor: SchemeColor.primary,
-          navigationBarIndicatorOpacity: 1.00,
-          navigationBarElevation: 2.0,
-          navigationBarHeight: 70.0,
-          navigationRailSelectedLabelSchemeColor: SchemeColor.primary,
-          navigationRailMutedUnselectedLabel: false,
-          navigationRailSelectedIconSchemeColor: SchemeColor.onPrimary,
-          navigationRailMutedUnselectedIcon: false,
-          navigationRailIndicatorSchemeColor: SchemeColor.primary,
-          navigationRailIndicatorOpacity: 1.00,
-        ),
-        keyColors: const FlexKeyColors(
-          useTertiary: true,
-          keepPrimary: true,
-        ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
-        swapLegacyOnMaterial3: true,
-        // To use the Playground font, add GoogleFonts package and uncomment
-        // fontFamily: GoogleFonts.notoSans().fontFamily,
-      ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+    String appLanguage = _preference.getString(
+      PreferenceManager.appLanguage,
+      defaultValue: AppLanguage.en.name,
     );
+
+    final Size screenSize = MediaQuery.of(context).size;
+    return ScreenUtilInit(
+        designSize: screenSize,
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, widget) {
+          return MaterialApp.router(
+            key: navigatorKey,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: getSupportedLocal(),
+         //   locale: _locale,
+            title: "",
+            theme: _getTheme(appLanguage),
+            debugShowCheckedModeBanner: false,
+            routerConfig: GoRouterService.router,
+          );
+        });
+
+    // return ScreenUtilInit(
+
+    //      designSize:  Size(
+    //       AppValues.defaultScreenWidth,
+    //       AppValues.defaultScreenHeight,
+    //     ),
+    //   child: MaterialApp.router(
+    //     key: navigatorKey,
+    //     //  title: 'Flutter Demo',
+    //     localizationsDelegates: const [
+    //       AppLocalizations.delegate, // Add this line
+    //       GlobalMaterialLocalizations.delegate,
+    //       GlobalWidgetsLocalizations.delegate,
+    //       GlobalCupertinoLocalizations.delegate,
+    //     ],
+    //     supportedLocales: const [
+    //       Locale('en'), // English
+    //       Locale('es'), // Spanish
+    //     ],
+    //     theme: _getTheme( appLanguage),
+    //     home: const HomePage(title: 'Flutter Demo Home Page'),
+    //   ),
+    // );
+  }
+
+  final PreferenceManager _preference = PreferenceManagerImpl();
+
+  ThemeData _getTheme(String appLanguage) {
+    String savedTheme = _preference.getString(PreferenceManager.theme);
+    //String savedTheme = "AppTheme.DARK";
+
+    if (savedTheme == AppTheme.DARK.toString()) {
+      return AppThemeData.getDarkTheme(appLanguage);
+    } else if (savedTheme == AppTheme.LIGHT.toString()) {
+      return AppThemeData.lightThemeFlex(appLanguage);
+    } else {
+      return _getThemeSameAsSystem(appLanguage);
+    }
+  }
+
+  ThemeData _getThemeSameAsSystem(String appLanguage) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    return isDarkMode
+        ? AppThemeData.getDarkTheme(appLanguage)
+        : AppThemeData.getLightTheme(appLanguage);
   }
 }

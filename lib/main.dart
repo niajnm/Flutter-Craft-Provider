@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-
 import 'app/core/services/firebase_service.dart';
 import 'app/core/services/service_locator.dart';
 import 'flavors/build_config.dart';
@@ -42,5 +41,5 @@ void main() async {
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MultiProvider(
-      providers: ProviderPath.providersList, child: const BaseApp()));
+      providers: ProviderPath.providersList, child: BaseApp()));
 }
