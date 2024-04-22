@@ -18,13 +18,13 @@ class GoRouterService {
       // GoRoute(
       //   path: RoutePaths.homePage,
       //   builder: (context, state) => HomePage(),
-      //   // redirect: (context, state) {
-      //   //   final routerService = RouterService();
-      //   //   if (routerService.userIsNotLoggedIn) {
-      //   //     return "/login";
-      //   //   }
-      //   //   return "/";
-      //   // },
+      // redirect: (context, state) {
+      //   final routerService = RouterService();
+      //   if (routerService.userIsNotLoggedIn) {
+      //     return "/login";
+      //   }
+      //   return "/";
+      // },
       // ),
       // GoRoute(
       //   path: RoutePaths.settingPage,

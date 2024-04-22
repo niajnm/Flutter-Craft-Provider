@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_craft/app/core/route/route_paths.dart';
+import 'package:flutter_craft/app/module/home_page.dart';
 
 class RouteServices {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,11 +12,11 @@ class RouteServices {
       //     builder: (_) => UserOnBoardingPage(),
       //     settings: settings,
       //   );
-      // case RoutePaths.home:
-      //   return NoAnimationPageRoute(
-      //     builder: (_) => HomePage(),
-      //     settings: settings,
-      //   );
+      case RoutePaths.homePage:
+        return NoAnimationPageRoute(
+          builder: (_) => HomePage(),
+          settings: settings,
+        );
 
       default:
         return _errorRoute();

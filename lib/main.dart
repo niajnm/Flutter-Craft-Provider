@@ -31,7 +31,7 @@ void main() async {
 
   // await dotenv.load(fileName: "conf/.env");
 
-  // await GetStorage.init(databaseName);
+   await GetStorage.init(databaseName);
 
   // Enable it after adding firebase connection to this project
   // await FirebaseService.enableFirebase(Environment.DEVELOPMENT);
@@ -41,5 +41,5 @@ void main() async {
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MultiProvider(
-      providers: ProviderPath.providersList, child: BaseApp()));
+      providers: ProviderPath.providersList, child: const BaseApp()));
 }
