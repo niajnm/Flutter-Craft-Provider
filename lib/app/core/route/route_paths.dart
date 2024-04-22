@@ -1,6 +1,7 @@
 class RoutePaths {
-  static const String onboard = '/onboard';
-  static const String collectUserInfo = '/collectuserinfo';
-  static const String home = '/home';
+  static const String onboardPage = '/onboard';
+  static const String homePage = '/home';
+  static const String mainPage = '/';
+  static const String settingPage = '/setting';
 
 }
