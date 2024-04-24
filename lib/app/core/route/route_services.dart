@@ -6,12 +6,15 @@ class RouteServices {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     //final args = settings.arguments;
 
-    switch (settings.name) {
+    switch (settings.name)
+  {
       // case RoutePaths.onboard:
       //   return NoAnimationPageRoute(
       //     builder: (_) => UserOnBoardingPage(),
       //     settings: settings,
       //   );
+
+      
       case RoutePaths.homePage:
         return NoAnimationPageRoute(
           builder: (_) => HomePage(),
