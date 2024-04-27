@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_craft/app/core/route/route_paths.dart';
 import 'package:flutter_craft/app/module/home_page.dart';
+import 'package:flutter_craft/app/module/weather/view/weather_main_screen.dart';
 import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
@@ -11,10 +11,15 @@ class GoRouterService {
   static final router = GoRouter(
     initialLocation: '/',
     routes: [
+      // GoRoute(
+      //   path: RoutePaths.mainPage,
+      //   builder: (context, state) => HomePage(),
+      // ),
       GoRoute(
-        path: RoutePaths.mainPage,
-        builder: (context, state) => HomePage(),
+        path: RoutePaths.weatherMainPage,
+        builder: (context, state) => const WeatherMainScreen(),
       ),
+
       // GoRoute(
       //   path: RoutePaths.homePage,
       //   builder: (context, state) => HomePage(),

@@ -113,7 +113,7 @@ class AppThemeData {
   }
 
   static ThemeData lightThemeFlex(String appLanguage) => FlexThemeData.light(
-        scheme: FlexScheme.barossa,
+        scheme: FlexScheme.blueWhale,
         surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
         blendLevel: 10,
         appBarStyle: FlexAppBarStyle.background,

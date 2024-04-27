@@ -37,7 +37,7 @@ class _BaseAppState extends State<BaseApp> {
             key: navigatorKey,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: getSupportedLocal(),
-         //   locale: _locale,
+            //   locale: _locale,
             title: "",
             theme: _getTheme(appLanguage),
             debugShowCheckedModeBanner: false,
@@ -91,6 +91,6 @@ class _BaseAppState extends State<BaseApp> {
 
     return isDarkMode
         ? AppThemeData.getDarkTheme(appLanguage)
-        : AppThemeData.getLightTheme(appLanguage);
+        : AppThemeData.lightThemeFlex(appLanguage);
   }
 }

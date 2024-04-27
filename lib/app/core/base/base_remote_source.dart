@@ -1,55 +1,69 @@
-// import 'dart:io';
+import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:flutter_craft/app/core/network/dio_provider.dart';
+import 'package:flutter_craft/app/core/network/error_handlers.dart';
+import 'package:flutter_craft/app/core/network/exceptions/base_exception.dart';
+import 'package:path_provider/path_provider.dart';
 
-// import 'package:dio/dio.dart';
+import '../../../flavors/build_config.dart';
 
+abstract class BaseRemoteSource {
+  Dio get dioClient => DioProvider.dioWithHeaderToken;
+  Dio get dioWithCacheClient => DioProvider.httpDioWithCache;
 
-// import '/flavors/build_config.dart';
+  final logger = BuildConfig.instance.config.logger;
 
-// abstract class BaseRemoteSource {
-//   Dio get dioClient => DioProvider.dioWithHeaderToken;
+  Future<Response<T>> callApiWithErrorParser<T>(Future<Response<T>> api) async {
+    try {
+      Response<T> response = await api;
 
-//   final logger = BuildConfig.instance.config.logger;
+      if (response.statusCode != HttpStatus.ok ||
+          (response.data as Map<String, dynamic>)['statusCode'] !=
+              HttpStatus.ok) {
+        // TODO
+      }
 
-//   Future<Response<T>> callApiWithErrorParser<T>(Future<Response<T>> api) async {
-//     try {
-//       Response<T> response = await api;
+      return response;
+    } on DioError catch (dioError) {
+      Exception exception = handleDioError(dioError);
+      logger.e(
+          "Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");
+      throw (exception).message;
+    } catch (error) {
+      logger.e("Generic error: >>>>>>> $error");
 
-//       if (!_isResponseStatusSuccess(response.statusCode)) {
-//         throw handleError(_getErrorMessage(response));
-//       }
+      if (error is BaseException) {
+        rethrow;
+      }
 
-//       return response;
-//     } on DioException catch (dioError) {
-//       Exception exception = handleDioError(dioError);
-//       logger.e(
-//           "Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");
-//       throw exception;
-//     } catch (error) {
-//       logger.e("Generic error: >>>>>>> $error");
+      throw handleError("$error");
+    }
+  }
 
-//       if (error is BaseException) {
-//         rethrow;
-//       }
+  Future<File> getCachedFile(String fileName) async {
+    var dir = await getTemporaryDirectory();
+    return File(dir.path + "/" + fileName);
+  }
 
-//       throw handleError("$error");
-//     }
-//   }
+  Future<void> cacheDataToFile(String fileName, String data) async {
+    final file = await getCachedFile(fileName);
+    await file.writeAsString(data);
+  }
 
-//   bool _isResponseStatusSuccess(int? statusCode) {
-//     return statusCode == null ||
-//         (statusCode >= HttpStatus.ok && statusCode <= HttpStatus.imUsed);
-//   }
+  Future<String?> readDataFromFile(String fileName) async {
+    final file = await getCachedFile(fileName);
+    if (file.existsSync()) {
+      return file.readAsString();
+    }
+    return null;
+  }
 
-//   String _getErrorMessage(Response? response) {
-//     logger.e("${response?.data}");
-//     if (response?.data != null) {
-//       var data = (response?.data as Map<String, dynamic>);
-//       var statusCode = data['status'];
-//       if (!_isResponseStatusSuccess(statusCode)) {
-//         return data['message'];
-//       }
-//     }
+  // Function to clear the cache for the specified file.
+  Future<void> clearCacheFile(String cacheFileName) async {
+    final file = await getCachedFile(cacheFileName);
 
-//     return response?.statusMessage ?? "Something wrong";
-//   }
-// }
+    if (file.existsSync()) {
+      await file.delete();
+    }
+  }
+}

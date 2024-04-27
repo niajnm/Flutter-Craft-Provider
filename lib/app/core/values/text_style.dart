@@ -355,10 +355,9 @@ TextStyle displayMediumTextStyleDark = TextStyle(
 );
 
 TextStyle displayLargeTextStyle = TextStyle(
-  fontSize: AppValues.fontSize_24.r,
-  fontWeight: FontWeight.w600,
-  color: AppColors.neutralGray,
-);
+    fontSize: AppValues.fontSize_24.r,
+    fontWeight: FontWeight.w600,
+    color: AppColors.colorWhite);
 
 TextStyle displayLargeTextStyleDark = TextStyle(
   fontSize: AppValues.fontSize_24.r,
@@ -393,7 +392,7 @@ TextStyle headlineMediumTextStyleDark = TextStyle(
 TextStyle headlineLargeTextStyle = TextStyle(
   fontSize: AppValues.fontSize_24.r,
   fontWeight: FontWeight.w400,
-  color: AppColors.primaryGreen05,
+  color: AppColors.colorWhite,
 );
 
 TextStyle headlineLargeTextStyleDark = TextStyle(

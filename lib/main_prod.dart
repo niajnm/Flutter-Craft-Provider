@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_craft/app/base_app/base_app.dart';
 import 'package:flutter_craft/app/core/provider/provider.dart';
+import 'package:flutter_craft/app/core/services/service_locator.dart';
 import 'package:flutter_craft/app/utils/constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,9 +35,9 @@ void main() async {
   // await FirebaseService.enableFirebase(Environment.DEVELOPMENT);
 
   await ScreenUtil.ensureScreenSize();
-  // await ServiceLocator.setUpServiceLocator();
+  await ServiceLocator.setUpServiceLocator();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-      MultiProvider(providers: ProviderPath.providersList, child:  BaseApp()));
+      MultiProvider(providers: ProviderPath.providersList, child: BaseApp()));
 }
