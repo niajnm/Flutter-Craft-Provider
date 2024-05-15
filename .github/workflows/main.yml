@@ -31,9 +31,10 @@ jobs:
 
       - name: Install Dependencies  # Install Flutter dependencies
         run: flutter pub get  # Run 'flutter pub get' command to fetch dependencies
-
-      # - name: Run Tests  # Run tests
-      #   run: flutter test  # Execute unit tests, widget tests, and integration tests
+      # - name: run app localization command 
+      #   run: flutter gen-l10n 
+      - name: run app localization command   # Run tests
+        run: flutter gen-l10n  # Execute unit tests, widget tests, and integration tests
 
       - name: Build Dev APK  # Build APK for main_dev flavor 
        # run: flutter build apk --flavor main_dev  # Build the APK file for main_dev flavor
