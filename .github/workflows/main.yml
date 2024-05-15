@@ -14,12 +14,7 @@ name: "Build & Release"
 jobs:
   build_dev:
     runs-on: ubuntu-latest  # Use an Ubuntu runner for the job
-    container:
-      image: ubuntu-latest
-      options: --init
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-
+    
     steps:
       - name: Checkout Repository  # Check out the source code from the repository
         uses: actions/checkout@v2  # Use the GitHub Actions checkout action
@@ -49,6 +44,13 @@ jobs:
           name: dev-apk
           file: build/app/outputs/flutter-apk/app-main_dev.apk
           path: build/app/outputs/flutter-apk/app-main_dev.apk
+
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*"
+          tag: v0.0.1
+          token: ${{ secrets.TOKEN }}  
  
 
   # build_prod:
