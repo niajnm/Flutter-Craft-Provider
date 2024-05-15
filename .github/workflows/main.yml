@@ -14,6 +14,11 @@ name: "Build & Release"
 jobs:
   build_dev:
     runs-on: ubuntu-latest  # Use an Ubuntu runner for the job
+    container:
+      image: ubuntu-latest
+      options: --init
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
 
     steps:
       - name: Checkout Repository  # Check out the source code from the repository
@@ -36,13 +41,13 @@ jobs:
         run: flutter gen-l10n  # Execute unit tests, widget tests, and integration tests
 
       - name: Build Dev APK  # Build APK for main_dev flavor 
-       # run: flutter build apk --flavor main_dev  # Build the APK file for main_dev flavor
         run: flutter build apk --flavor dev lib/main_dev.dart  # Build the APK file for main_dev flavor
              
-      - name: Upload Prod APK
+      - name: Upload dev APK
         uses: actions/upload-artifact@v2
         with:
           name: dev-apk
+          file: build/app/outputs/flutter-apk/app-main_dev.apk
           path: build/app/outputs/flutter-apk/app-main_dev.apk
  
 
@@ -74,4 +79,4 @@ jobs:
   #       run: flutter test  # Execute unit tests, widget tests, and integration tests
 
   #     - name: Build Prod APK  # Build APK for main_prod flavor
-  #       run: flutter build apk --flavor main_prod  # Build the APK file for main_prod flavor
+  #       run: flutter build apk --flavor prod lib/main_prod.dart --release # Build the APK file for main_prod flavor
