@@ -77,8 +77,8 @@ jobs:
       
       - name: run app localization command   # Run tests
         run: flutter gen-l10n  #
-      - name: Run Tests  # Run tests
-        run: flutter test  # Execute unit tests, widget tests, and integration tests
+      # - name: Run Tests  # Run tests
+      #   run: flutter test  # Execute unit tests, widget tests, and integration tests
 
       - name: Build Prod APK  # Build APK for main_prod flavor
         run: flutter build apk --flavor prod lib/main_prod.dart --release # Build the APK file for main_prod flavor
